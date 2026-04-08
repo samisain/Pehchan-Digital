@@ -1,0 +1,88 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the application",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The user's Firebase Auth UID"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The user's email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The user's full name"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "The user's profile picture URL"
+        },
+        "subscriptionPlan": {
+          "type": "string",
+          "enum": ["free", "pro"],
+          "description": "The user's subscription plan"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user account was created"
+        }
+      },
+      "required": ["uid", "email", "subscriptionPlan", "createdAt"]
+    },
+    "CardData": {
+      "title": "CardData",
+      "description": "A digital business card created by a user",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The UID of the user who owns this card"
+        },
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "company": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "website": { "type": "string" },
+        "logo": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "instagram": { "type": "string" },
+        "facebook": { "type": "string" },
+        "twitter": { "type": "string" },
+        "youtube": { "type": "string" },
+        "github": { "type": "string" },
+        "tiktok": { "type": "string" },
+        "twitch": { "type": "string" },
+        "discord": { "type": "string" },
+        "snapchat": { "type": "string" },
+        "pinterest": { "type": "string" },
+        "dribbble": { "type": "string" },
+        "template": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/User"
+      },
+      "description": "Stores user profiles and subscription details"
+    },
+    "/cards/{cardId}": {
+      "schema": {
+        "$ref": "#/entities/CardData"
+      },
+      "description": "Stores digital business cards created by users"
+    }
+  }
+}
